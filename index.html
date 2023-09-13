@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gjett nummer</title>
+    <style>
+        #container {
+            margin:auto;
+            border: 5px;
+            font-size: 30px;
+            padding: 10px;
+            text-align: center;
+            height: 260px;
+            width: 600px;
+            background-color:#0e2431;
+        }
+        p{
+            color: white;
+        }
+        #userInput{
+            width: 170px;
+            height: 23px;
+        }
+        #outputText{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    <p>Gjett et nummer mellom 1 og 10</p>
+    <p id="outputText">Skriv inn et tall under</p>
+    <input id="userInput">
+    <button id="enterButton">Kjør</button>
+    <button id="againButton">Prøv igjen</button>
+</div>
+
+<script>
+    var enterButton = document.getElementById('enterButton');
+    var againButton = document.getElementById('againButton');
+    var output = document.getElementById('outputText');
+
+    var randomNumber = Math.ceil(Math.random()*10);
+
+    function checkNumber(){
+        var input = document.getElementById('userInput').value;
+        if(input == randomNumber){
+            output.innerHTML="Du gjettet riktig! "+ ", "+ " det var "+ randomNumber;
+            output.style.color="green";
+        }
+        else if(input>randomNumber && input<10){
+            output.innerHTML ="Du gjettet for høyt";
+        }
+        else if(input<randomNumber && input<1){
+            output.innerHTML="Du gjettet for lavt";
+        }
+        else if(input<1){
+            output.innerHTML="Lavere, det må være imellom 1 og 100";
+        }
+        else if(isNaN(input)){
+            output.innerHTML="Det er ikke et tall";
+        }
+        else{
+            output.innerHTML="Høyere, det må være imellom 1 og 100";
+            }
+
+         }
+
+         enterButton.addEventListener("click", checkNumber);
+         againButton.addEventListener("click", function(){
+            location.reload();
+         })
+</script>
+</body>
+</html>
